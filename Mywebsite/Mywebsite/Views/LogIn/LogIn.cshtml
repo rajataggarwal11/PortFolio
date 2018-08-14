@@ -1,0 +1,49 @@
+﻿@model USER_DETAIL.USER_MASTER
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("LoginSubmit", "LogIn", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <hr />
+                <table class="form-group">
+                    <tr class="col-md-10">
+                        <td>Email Id/Mobile No</td>
+                        <td>
+                            @Html.TextBoxFor(m => m.EMAIL_ID, new { @class = "form-control" })
+
+                        </td>
+                    </tr>
+
+                    <tr class="col-md-10">
+                        <td>Password</td>
+                        <td>
+                            @Html.PasswordFor(m=>m.PASSWORD, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr class="col-md-10">
+                        <td><input type="submit" value="Log in" class="btn btn-default" /></td>
+                        <td>
+                            @Html.ActionLink("Register as a new user", "SignUp")
+                        </td>
+                    </tr>
+                </table>
+             
+                @* Enable this once you have account confirmation enabled for password reset functionality
+                    <p>
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                    </p>*@
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
